@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Assignment 5, Part 3 - Image Rollovers</title>
+<script> 
+//    document.addEventListener("DOMContentLoaded", init, false);
+//    function init() {
+
+    
+//02: Helper function to retrieve the ID of each image
+    function getImage(id) {
+
+        return document.getElementById(id);
+
+    };
+       
+
+//03: Rollover function that performs the rollover effect on each image
+        function Rollover(imageId, newImageURL) {
+//        4.	Create a new object variable called target and store this within it.
+            var target = this;
+            
+
+//        05: Create 3 new properties including newImageURL, image, and oldImageURL
+//    	06: Store the new image URL in a property
+//    	07: Store the old image's ID in a property
+//    	08: Store the old image URL in a property
+
+            target.newImageURL = newImageURL;
+            target.image = getImage(imageId);
+            target.oldImageURL = this.image.src;
+                        
+//       09, 10, 11: Attach onmouseover and onmouseout event handlers to target.image property
+            
+            target.image.onmouseover = function() {
+                target.image.src = target.newImageURL;
+            };
+
+            target.image.onmouseout = function() {
+                target.image.src = target.oldImageURL;
+
+            };
+        }; 
+        
+            
+//    12, 13: Event handler to create 5 new Rollover objects once the page loads
+    
+    window.onload = function () {
+        
+        <!-- 01 Programatically add image ids for each image -->
+            var idName; 
+            var imgNumber = 1;
+            var imgElements = document.getElementsByTagName("img");
+            for (var i = 0; i < imgElements.length; i += 1) {
+                idName = "image" + imgNumber.toString();
+                imgNumber += 1;                imgElements[i].setAttribute("id",idName.toString());
+            }
+        
+//        12, 13: Event handler to create 5 new Rollover objects once the page loads
+        var rollover1 = new Rollover("image1", "home_over.png");
+        var rollover2 = new Rollover("image2", "aboutus_over.png");
+        var rollover3 = new Rollover("image3", "solutions_over.png");
+        var rollover4 = new Rollover("image4", "support_over.png");
+        var rollover5 = new Rollover("image5", "contactus_over.png");
+    }; 
+        
+
+    </script>
+</head>
+
+<body>
+	<!-- 01 -->
+    <img src="home.png">
+    <img src="aboutus.png">
+    <img src="solutions.png">
+    <img src="support.png">
+    <img src="contactus.png">
+
+
+</body>
+</html>
